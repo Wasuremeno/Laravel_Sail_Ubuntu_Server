@@ -7,7 +7,11 @@ import { defineConfig } from 'vite';
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.tsx'],
+            input: [
+                'resources/css/app.css', 
+                'resources/js/app.tsx',
+                'resources/js/pages/LearnNewWords.jsx'
+            ],
             ssr: 'resources/js/ssr.tsx',
             refresh: true,
         }),
@@ -19,5 +23,13 @@ export default defineConfig({
     ],
     esbuild: {
         jsx: 'automatic',
+    },
+        server: {
+        host: '0.0.0.0',
+        port: process.env.VITE_PORT ? parseInt(process.env.VITE_PORT) : 5173,
+        hmr: {
+            host: process.env.VITE_HOST || 'localhost',
+        },
+
     },
 });
