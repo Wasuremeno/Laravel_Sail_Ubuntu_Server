@@ -3,14 +3,13 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Japanese;
-use App\Models\JapaneseImg;
+use Illuminate\Support\Facades\DB;
 
 class JapaneseSeeder extends Seeder
 {
-    public function run(): void
+    public function run()
     {
-        $japaneseData = [
+        $japanese = [
             ['id' => 1, 'furigana' => 'あかい', 'kanji' => '赤い', 'english' => 'red', 'memorized' => 1],
             ['id' => 2, 'furigana' => 'なに', 'kanji' => '何', 'english' => 'what', 'memorized' => 1],
             ['id' => 3, 'furigana' => 'いう', 'kanji' => '言う', 'english' => 'to tell', 'memorized' => 0],
@@ -26,14 +25,11 @@ class JapaneseSeeder extends Seeder
             ['id' => 13, 'furigana' => null, 'kanji' => null, 'english' => 'power', 'memorized' => 1, 'katakana' => 'パワー'],
         ];
 
-        foreach ($japaneseData as $data) {
-            Japanese::create($data);
+        foreach ($japanese as $word) {
+            DB::table('japanese')->updateOrInsert(
+                ['id' => $word['id']],
+                $word
+            );
         }
-
-        $imageData = [];
-        foreach (range(1, 13) as $i) {
-            $imageData[] = ['img_ID' => $i, 'img_path' => $i, 'id' => $i];
-        }
-        JapaneseImg::insert($imageData);
     }
 }
