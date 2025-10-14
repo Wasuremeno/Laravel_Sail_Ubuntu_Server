@@ -10,6 +10,10 @@
         </testsuite>
         <testsuite name="Feature">
             <directory>tests/Feature</directory>
+            <directory>tests/API</directory>
+            <directory>tests/Integration</directory>
+            <directory>tests/Models</directory>
+            <directory>tests/Controllers</directory>
         </testsuite>
     </testsuites>
     <source>

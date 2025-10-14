@@ -141,3 +141,32 @@
         @apply bg-background text-foreground;
     }
 }
+
+
+canvas{
+  height: 100vh!important;
+  width: 100vw;
+}
+
+/* SourGummy Variable Font Faces */
+@font-face {
+  font-family: 'SourGummy';
+  src: url('../fonts/sourgummy/SourGummy-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900; /* Specify the weight range available */
+  font-stretch: 75% 125%; /* Specify width range if needed */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SourGummy';
+  src: url('../fonts/sourgummy/SourGummy-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-stretch: 75% 125%;
+  font-style: italic;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
