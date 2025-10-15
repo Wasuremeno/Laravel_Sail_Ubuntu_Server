@@ -1,7 +1,21 @@
 <?php
 use App\Http\Controllers\MixedModeController;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+
+
+Route::get('/test-redis', function () {
+    // Correct way using Redis facade
+    Redis::set('test_key', 'Hello Redis!');
+    $value = Redis::get('test_key');
+    
+    return response()->json([
+        'redis_test' => $value,
+        'status' => 'Redis is working!'
+    ]);
+});
 
 
 Route::get('/learn-new-words', function () {

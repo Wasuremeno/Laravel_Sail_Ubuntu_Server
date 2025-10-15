@@ -1,5 +1,5 @@
 import React from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 
 interface JapaneseWord {
     id: number;
@@ -27,7 +27,7 @@ const MixedMode = ({ title, japaneseWords }: MixedModeProps) => {
             </Head>
             
             <div className="container mx-auto px-4 py-8">
-                <h1 className="text-3xl font-bold text-gray-900 mb-6">
+                <h1 className="text-3xl font-bold text-red-900 mb-6">
                     {title}
                 </h1>
                 
@@ -74,6 +74,16 @@ const MixedMode = ({ title, japaneseWords }: MixedModeProps) => {
                     )}
                 </div>
             </div>
+            <Link 
+    href="/review-words" 
+    className="m-[100px] p-[10px] bg-blue-500 hover:bg-blue-700 text-white font-bold rounded inline-block mb-4">
+    Review Words
+</Link>
+            <Link 
+    href="/learn-new-words" 
+    className="m-[100px] p-[10px] bg-blue-500 hover:bg-blue-700 text-white font-bold rounded inline-block mb-4">
+    Learn New Words
+</Link>
         </>
     );
 };
