@@ -3,12 +3,14 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-// Route::get('/learn-new-words', [LearnWordsController::class, 'show'])->name('learn.words');
 
-// routes/web.php
 Route::get('/learn-new-words', function () {
     return Inertia::render('LearnNewWords');
 })->name('learn.words');
+
+Route::get('/review-words', function () {
+    return Inertia::render('ReviewWords');
+})->name('review.words');
 
 
 Route::get('/', function () {
