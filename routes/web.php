@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\MixedModeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -11,6 +11,8 @@ Route::get('/learn-new-words', function () {
 Route::get('/review-words', function () {
     return Inertia::render('ReviewWords');
 })->name('review.words');
+
+Route::get('/mixed-mode', [MixedModeController::class, 'index'])->name('mixed-mode');
 
 
 Route::get('/', function () {
