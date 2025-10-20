@@ -10,8 +10,6 @@ export default defineConfig({
             input: [
                 'resources/css/app.css', 
                 'resources/js/app.tsx',
-                // 'resources/js/pages/LearnNewWords.tsx',
-                // 'resources/js/pages/ReviewWords.tsx'
             ],
             ssr: 'resources/js/ssr.tsx',
             refresh: true,
@@ -25,12 +23,17 @@ export default defineConfig({
     esbuild: {
         jsx: 'automatic',
     },
-        server: {
+    server: {
         host: '0.0.0.0',
         port: process.env.VITE_PORT ? parseInt(process.env.VITE_PORT) : 5173,
         hmr: {
             host: process.env.VITE_HOST || 'localhost',
         },
-
+    },
+  
+    resolve: {
+        alias: {
+            '@': '/resources/js',
+        },
     },
 });

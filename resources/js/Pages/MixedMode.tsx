@@ -1,5 +1,6 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
+import Navigation from '@/components/Navigation';
 
 interface JapaneseWord {
     id: number;
@@ -26,12 +27,14 @@ const MixedMode = ({ title, japaneseWords }: MixedModeProps) => {
                 <title>{title}</title>
             </Head>
             
+            <Navigation />
+
             <div className="container mx-auto px-4 py-8">
                 <h1 className="text-3xl font-bold text-red-900 mb-6">
                     {title}
                 </h1>
                 
-                <div className="bg-white rounded-lg shadow-md p-6">
+                <div className="bg-[#212121] rounded-lg shadow-md p-6">
                     <h2 className="text-2xl font-semibold mb-4">Japanese Words</h2>
                     
                     {/* Words List */}
@@ -39,16 +42,18 @@ const MixedMode = ({ title, japaneseWords }: MixedModeProps) => {
                         {japaneseWords.map((word) => (
                             <div 
                                 key={word.id}
-                                className={`border rounded-lg p-4 ${
-                                    word.memorized ? 'bg-green-50 border-green-200' : 'bg-white border-gray-200'
+                                className={`rounded-lg p-4 ${
+                                    word.memorized ? 'bg-[#212121]' : 'border-gray-200'
                                 }`}
                             >
                                 <div className="flex justify-between items-start mb-2">
                                     <h3 className="text-lg font-semibold">
                                         {word.kanji && (
-                                            <div className="text-xl text-red-700">{word.kanji}</div>
+                                            <div className="text-xl text-rose-500">{word.kanji}</div>
                                         )}
-                                        <div className="text-gray-600 text-sm">
+                                        <div className={`text-sm ${
+                                            word.katakana ? 'text-green-500' : 'text-amber-500'
+                                        }`}>
                                             {word.furigana || word.katakana}
                                         </div>
                                     </h3>
@@ -62,7 +67,7 @@ const MixedMode = ({ title, japaneseWords }: MixedModeProps) => {
                                         {word.memorized ? 'Memorized' : 'Learning'}
                                     </span>
                                 </div>
-                                <p className="text-gray-700">{word.english}</p>
+                                <p className="text-white">{word.english}</p>
                             </div>
                         ))}
                     </div>
@@ -74,16 +79,6 @@ const MixedMode = ({ title, japaneseWords }: MixedModeProps) => {
                     )}
                 </div>
             </div>
-            <Link 
-    href="/review-words" 
-    className="m-[100px] p-[10px] bg-blue-500 hover:bg-blue-700 text-white font-bold rounded inline-block mb-4">
-    Review Words
-</Link>
-            <Link 
-    href="/learn-new-words" 
-    className="m-[100px] p-[10px] bg-blue-500 hover:bg-blue-700 text-white font-bold rounded inline-block mb-4">
-    Learn New Words
-</Link>
         </>
     );
 };

@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
@@ -23,6 +24,12 @@ export default {
         bold: 700,
         extrabold: 800,
         black: 900,
+      },
+      colors: {
+        dark: {
+          bg: '#141414',
+          text: '#ffffff',
+        }
       },
     },
   },
