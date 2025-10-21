@@ -19,13 +19,19 @@
     --text-grey: #939496;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 @layer base {
     * {
         @apply border-gray-200;
     }
 
     body {
-        @apply bg-[var(--main-color)] text-white;
+        @apply bg-[var(--main-color)] text-white [caret-color:transparent];
     }
 }
 
