@@ -7,7 +7,11 @@ export default function Navigation() {
     return (
         <nav className="h-[70px] w-full bg-[#212121] flex items-center px-4 gap-4">
             <div className="h-[70px] w-[10%] flex items-center justify-center">
-                <p className="text-white [caret-color:transparent]">Back</p>
+                <Link
+                href="/" 
+                className="text-white [caret-color:transparent]">
+                Back
+                </Link>
             </div>
             <div className="w-full flex justify-evenly">        
                 <Link 

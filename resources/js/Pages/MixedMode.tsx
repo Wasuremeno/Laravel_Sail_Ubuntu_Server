@@ -33,6 +33,8 @@ const MixedMode = ({ title, japaneseWords }: MixedModeProps) => {
             <Navigation />
             
             <MixedModeContent title={title} japaneseWords={japaneseWords} />
+
+            
         </>
     );
 };

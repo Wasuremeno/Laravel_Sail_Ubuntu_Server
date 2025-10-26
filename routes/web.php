@@ -39,5 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
+Route::post('/mark-word/{wordId}/{status}', [MixedModeController::class, 'markWord']);
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
