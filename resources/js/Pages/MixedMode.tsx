@@ -1,7 +1,9 @@
 import React from 'react';
 import { Head, Link } from '@inertiajs/react';
 import Navigation from '@/components/Navigation';
-import MixedModeContent from '@/components/MixedModeContent'; // Import the new component
+import MixedModeContent from '@/components/MixedModeContent'; 
+import ThemeToggle from '@/components/ThemeToggle';
+
 
 interface JapaneseWord {
     id: number;
@@ -34,7 +36,7 @@ const MixedMode = ({ title, japaneseWords }: MixedModeProps) => {
             
             <MixedModeContent title={title} japaneseWords={japaneseWords} />
 
-            
+            <ThemeToggle />
         </>
     );
 };

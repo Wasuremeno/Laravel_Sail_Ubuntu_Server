@@ -1,6 +1,7 @@
 // components/MixedModeContent.tsx
 import React, { useEffect, useState } from 'react';
 import { router } from '@inertiajs/react';
+import ThemeToggle from '@/components/ThemeToggle';
 
 interface JapaneseWord {
     id: number;
@@ -89,7 +90,7 @@ const MixedModeContent = ({ title, japaneseWords }: MixedModeContentProps) => {
                 <h1 className="text-3xl font-bold text-red-900 mb-6">
                     {title}
                 </h1>
-                <div className="bg-[#212121] rounded-[18px] shadow-md p-6 text-center">
+                <div className="dark:bg-[#212121] bg-white rounded-[18px] shadow-md p-6 text-center">
                     <p className="text-white text-lg">No words available</p>
                 </div>
             </div>
@@ -98,7 +99,7 @@ const MixedModeContent = ({ title, japaneseWords }: MixedModeContentProps) => {
 
     return (
         <div className="container flex justify-center mx-auto px-4 py-8 pt-10">
-            <div className="bg-[#212121] w-[45vw] rounded-[18px] shadow-md">
+            <div className="dark:bg-[#212121] bg-white w-[45vw] rounded-[18px] shadow-md">
                 
                 {/* Single random word card */}
                 <div className="max-w-md mx-auto rounded-lg p-6 ">
@@ -144,7 +145,7 @@ const MixedModeContent = ({ title, japaneseWords }: MixedModeContentProps) => {
                             }`}
                         >
                             I already know <br /> this word
-                            <div className="text-xs text-gray-500 mt-1">Press F</div>
+                            <div className="text-xs text-neutral-800 dark:text-gray-500 mt-1">Press F</div>
                         </button>
                         <button 
                             data-action="unfamiliar"
@@ -154,7 +155,7 @@ const MixedModeContent = ({ title, japaneseWords }: MixedModeContentProps) => {
                             }`}
                         >
                             Start learning <br /> this word
-                            <div className="text-xs text-gray-500 mt-1">Press J</div>
+                            <div className="text-xs text-neutral-800 dark:text-gray-500 mt-1">Press J</div>
                         </button>
                     </div>
                 </div>
