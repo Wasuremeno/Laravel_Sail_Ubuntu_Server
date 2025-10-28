@@ -5,9 +5,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-
 Route::get('/test-redis', function () {
-    // Correct way using Redis facade
     Redis::set('test_key', 'Hello Redis!');
     $value = Redis::get('test_key');
     
@@ -18,16 +16,13 @@ Route::get('/test-redis', function () {
 });
 
 
-Route::get('/learn-new-words', function () {
-    return Inertia::render('LearnNewWords');
-})->name('learn.words');
 
-Route::get('/review-words', function () {
-    return Inertia::render('ReviewWords');
-})->name('review.words');
+
+Route::get('/learn-new-words', [MixedModeController::class, 'index'])->name('learn.words');
+
+Route::get('/review-words', [MixedModeController::class, 'index'])->name('review.words');
 
 Route::get('/mixed-mode', [MixedModeController::class, 'index'])->name('mixed-mode');
-
 
 Route::get('/', function () {
     return Inertia::render('welcome');

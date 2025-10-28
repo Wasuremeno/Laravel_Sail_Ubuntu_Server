@@ -1,26 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { Head } from '@inertiajs/react';
 import ThemeToggle from '@/components/ThemeToggle';
+import ReviewModeContent from '@/components/ReviewModeContent'; 
+import Navigation from '@/components/Navigation';
+
+interface JapaneseWord {
+    id: number;
+    furigana: string;
+    kanji: string | null;
+    english: string;
+    memorized: number;
+    katakana: string | null;
+    display_name: string;
+    image?: {
+        img_ID: number;
+        img_path: string;
+        id: number;
+    };
+}
+
+interface MixedModeProps {
+    title: string;
+    japaneseWords: JapaneseWord[];
+}
 
 
-function ReviewWords() {
+const ReviewWords = ({ title, japaneseWords }: MixedModeProps) => {
     return (
         <>
             <Head title="Review words" />
-            
+            <Navigation />
             {/* Add the theme toggle button */}
             <ThemeToggle />
+            <ReviewModeContent title={title} japaneseWords={japaneseWords} />
             
-            <div className="min-h-screen bg-white dark:bg-[#141414] transition-colors duration-200">
-                <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
-                        Review words
-                    </h1>
-                    <div className='font-sourgummy text-red-700 dark:text-red-400 text-[40px]'>
-                        Danil pidor
-                    </div>
-                </div>
-            </div>
+
         </>
     );
 }

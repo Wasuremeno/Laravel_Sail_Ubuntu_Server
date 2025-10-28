@@ -1,4 +1,4 @@
-// components/MixedModeContent.tsx
+// components/ReviewModeContent.tsx
 import React, { useEffect, useState } from 'react';
 import { router } from '@inertiajs/react';
 
@@ -17,12 +17,12 @@ interface JapaneseWord {
     };
 }
 
-interface MixedModeContentProps {
+interface ReviewModeContentProps {
     title: string;
     japaneseWords: JapaneseWord[];
 }
 
-const MixedModeContent = ({ title, japaneseWords }: MixedModeContentProps) => {
+const ReviewModeContent = ({ title, japaneseWords }: ReviewModeContentProps) => {
     const [activeButton, setActiveButton] = useState<'familiar' | 'unfamiliar' | null>(null);
     const [randomWord, setRandomWord] = useState<JapaneseWord | null>(null);
 
@@ -183,4 +183,4 @@ const MixedModeContent = ({ title, japaneseWords }: MixedModeContentProps) => {
     );
 };
 
-export default MixedModeContent;
+export default ReviewModeContent;
