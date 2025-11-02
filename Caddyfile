@@ -1,0 +1,50 @@
+furasshukado.com, www.furasshukado.com {
+    root * /var/www/html/public
+    encode gzip
+    
+    # PHP FastCGI for Laravel
+    php_fastcgi laravel.test:9000 {
+        try_files {path} {path}/ /index.php?{query}
+    }
+    
+    # Handle static assets
+    @static {
+        path /build/*
+        path /storage/*
+        path /favicon.ico
+        path /robots.txt
+    }
+    header @static Cache-Control "public, max-age=31536000, immutable"
+    
+    file_server
+    
+    # Security headers
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options DENY
+        X-XSS-Protection "1; mode=block"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        -Server
+    }
+    
+    # Block sensitive files and directories
+    @blocked {
+        path /\.env
+        path /\.git*
+        path /node_modules/*
+        path /vendor/*/tests/*
+        path /storage/framework/views/*
+    }
+    respond @blocked 404
+    
+    # Logging
+    log {
+        output file /var/log/caddy/access.log
+    }
+    
+    # Optional: Redirect www to non-www or vice versa
+    @www {
+        host www.hanagasumi.website
+    }
+    redir @www https://hanagasumi.website{uri} permanent
+}

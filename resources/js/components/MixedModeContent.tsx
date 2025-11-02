@@ -99,7 +99,7 @@ const MixedModeContent = ({ title, japaneseWords }: MixedModeContentProps) => {
 
     return (
         <div className="container flex justify-center mx-auto px-4 py-8 pt-10">
-            <div className="dark:bg-[#212121] bg-white w-[45vw] rounded-[18px] shadow-md">
+            <div className="dark:bg-[#212121] bg-white w-[75vw] md:w-[45vw] rounded-[18px] shadow-md">
                 
                 {/* Single random word card */}
                 <div className="max-w-md mx-auto rounded-lg p-6 ">

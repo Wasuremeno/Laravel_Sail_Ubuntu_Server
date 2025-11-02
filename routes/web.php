@@ -24,6 +24,17 @@ Route::get('/review-words', [MixedModeController::class, 'index'])->name('review
 
 Route::get('/mixed-mode', [MixedModeController::class, 'index'])->name('mixed-mode');
 
+
+Route::get('/mobile-test', function() {
+    return response()->json([
+        'status' => 'success',
+        'message' => 'Server is accessible from mobile',
+        'server_ip' => $_SERVER['SERVER_ADDR'] ?? 'unknown',
+        'client_ip' => request()->ip(),
+        'timestamp' => now()->toDateTimeString()
+    ]);
+});
+
 Route::get('/', function () {
     return Inertia::render('welcome');
 })->name('home');
