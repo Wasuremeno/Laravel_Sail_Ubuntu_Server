@@ -1,0 +1,111 @@
+services:
+    laravel.test:
+        build:
+            context: './vendor/laravel/sail/runtimes/8.4'
+            dockerfile: Dockerfile
+            args:
+                WWWGROUP: '${WWWGROUP}'
+        image: 'sail-8.4/app'
+        extra_hosts:
+            - 'host.docker.internal:host-gateway'
+        ports: []  # Remove port mappings - Caddy handles external traffic
+        environment:
+            WWWUSER: '${WWWUSER}'
+            LARAVEL_SAIL: 1
+            XDEBUG_MODE: 'off'  # Disable in production
+            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+            PHP_DEFAULT_CHARSET: 'UTF-8'
+            PHP_OPCACHE_ENABLE: '1'
+            PHP_OPCACHE_VALIDATE_TIMESTAMPS: '0'
+        volumes:
+            - '.:/var/www/html'
+            - './docker/php/production.ini:/usr/local/etc/php/conf.d/99-custom.ini'
+        networks:
+            - sail
+        depends_on:
+            - mysql
+            - redis
+
+    caddy:
+        image: caddy:2-alpine
+        restart: unless-stopped
+        ports:
+            - '80:80'
+            - '443:443'
+        volumes:
+            - './Caddyfile:/etc/caddy/Caddyfile'
+            - caddy_data:/data
+            - caddy_config:/config
+            - './public:/var/www/html/public:ro'
+        networks:
+            - sail
+        depends_on:
+            - laravel.test
+
+    mysql:
+        image: 'mysql/mysql-server:8.0'
+        ports: []  # Remove external exposure
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_HOST: '%'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 0  # Change to 0 in production
+            MYSQL_CHARSET: 'utf8mb4'
+            MYSQL_COLLATION: 'utf8mb4_unicode_ci'
+            MYSQL_INITDB_ARGS: '--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci'
+        command: 
+            - --character-set-server=utf8mb4
+            - --collation-server=utf8mb4_unicode_ci
+            - --skip-character-set-client-handshake
+        volumes:
+            - 'sail-mysql:/var/lib/mysql'
+            - './docker/mysql/production.cnf:/etc/mysql/conf.d/custom.cnf'
+        networks:
+            - sail
+        healthcheck:
+            test:
+                - CMD
+                - mysqladmin
+                - ping
+                - '-p${DB_PASSWORD}'
+            retries: 3
+            timeout: 5s
+
+    redis:
+        image: 'redis:alpine'
+        ports: []  # Remove external exposure
+        command: 
+            - redis-server
+            - --appendonly
+            - yes
+            - --requirepass '${REDIS_PASSWORD}'
+        volumes:
+            - 'sail-redis:/data'
+            - './docker/redis/production.conf:/usr/local/etc/redis/redis.conf'
+        networks:
+            - sail
+        healthcheck:
+            test:
+                - CMD
+                - redis-cli
+                - -a
+                - '${REDIS_PASSWORD}'
+                - ping
+            retries: 3
+            timeout: 5s
+
+networks:
+    sail:
+        driver: bridge
+
+volumes:
+    sail-mysql:
+        driver: local
+    sail-redis:
+        driver: local
+    caddy_data:
+        driver: local
+    caddy_config:
+        driver: local

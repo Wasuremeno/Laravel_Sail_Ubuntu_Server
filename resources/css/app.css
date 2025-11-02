@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@plugin 'tailwindcss-animate';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+    --main-color: #141414;
+    --secondary-color: #212121;
+    --unfamiliar: #525252;
+    --familiar: #4cb072;
+    --word-counter: #5f8bf8;
+    --text-grey: #939496;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+@layer base {
+    * {
+        @apply border-gray-200;
+    }
+
+    body {
+        @apply bg-gray-100 dark:bg-[var(--main-color)] text-white [caret-color:transparent];
+    }
+}
+
+canvas {
+    height: 100vh !important;
+    width: 100vw;
+}
+
+
+@font-face {
+    font-family: 'SourGummy';
+    src: url('../fonts/sourgummy/SourGummy-VariableFont_wdth,wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-stretch: 75% 125%;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'SourGummy';
+    src: url('../fonts/sourgummy/SourGummy-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-stretch: 75% 125%;
+    font-style: italic;
+    font-display: swap;
+}
