@@ -1,4 +1,5 @@
-furasshukado.com, www.furasshukado.com {
+hanagasumi.website, www.hanagasumi.website {
+
     root * /var/www/html/public
     encode gzip
     
@@ -42,7 +43,7 @@ furasshukado.com, www.furasshukado.com {
         output file /var/log/caddy/access.log
     }
     
-    # Optional: Redirect www to non-www or vice versa
+    # Redirect www to non-www or vice versa
     @www {
         host www.hanagasumi.website
     }

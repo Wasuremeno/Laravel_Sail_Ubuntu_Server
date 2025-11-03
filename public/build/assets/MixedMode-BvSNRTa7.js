@@ -1,0 +1,1 @@
+import{j as e,H as r}from"./app-BxztP44f.js";import{N as t,T as a}from"./ThemeToggle-CDT0eh4c.js";import{M as i}from"./MixedModeContent-D1K0M8Ob.js";/* empty css            */const j=({title:s,japaneseWords:o})=>e.jsxs(e.Fragment,{children:[e.jsx(r,{children:e.jsx("title",{children:s})}),e.jsx(t,{}),e.jsx(i,{title:s,japaneseWords:o}),e.jsx(a,{})]});export{j as default};
