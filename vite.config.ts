@@ -26,9 +26,10 @@ export default defineConfig({
     server: {
         host: '0.0.0.0',
         port: process.env.VITE_PORT ? parseInt(process.env.VITE_PORT) : 5173,
-        hmr: {
-            host: process.env.VITE_HOST || '192.168.0.105', 
-        },
+        hmr: process.env.NODE_ENV === 'development' ? {
+            host: process.env.VITE_HOST || 'localhost',
+            protocol: 'wss' // Используем wss для HTTPS
+        } : undefined,
     },
     resolve: {
         alias: {
