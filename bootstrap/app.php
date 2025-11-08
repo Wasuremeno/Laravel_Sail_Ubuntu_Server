@@ -27,8 +27,8 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         // Add these for better mobile support
-        $middleware->trustProxies(at: '*');
-        $middleware->trustHosts(at: ['*']);
+        // $middleware->trustProxies(at: '*');
+        // $middleware->trustHosts(at: ['*']);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
