@@ -1,4 +1,4 @@
-hanagasumi.website, www.hanagasumi.website {
+http://localhost:80 {
     root * /var/www/html/public
     encode gzip
     
@@ -41,10 +41,4 @@ hanagasumi.website, www.hanagasumi.website {
     log {
         output file /var/log/caddy/access.log
     }
-    
-    # Redirect www to non-www or vice versa
-    @www {
-        host www.hanagasumi.website
-    }
-    redir @www https://hanagasumi.website{uri} permanent
 }
