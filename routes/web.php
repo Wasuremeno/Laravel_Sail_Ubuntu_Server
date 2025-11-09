@@ -16,7 +16,14 @@ Route::get('/test-redis', function () {
 });
 
 
-
+// Route::get('/debug', function() {
+//     return response()->json([
+//         'laravel' => 'working',
+//         'database' => DB::connection()->getPdo() ? 'connected' : 'failed',
+//         'cache' => config('cache.default'),
+//         'env' => app()->environment()
+//     ]);
+// });
 
 Route::get('/learn-new-words', [MixedModeController::class, 'index'])->name('learn.words');
 

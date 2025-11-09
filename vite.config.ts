@@ -24,11 +24,13 @@ export default defineConfig({
         jsx: 'automatic',
     },
     server: {
-        host: '0.0.0.0',
+        host: process.env.VITE_HOST === '0.0.0.0' ? '0.0.0.0' : 'localhost',
         port: process.env.VITE_PORT ? parseInt(process.env.VITE_PORT) : 5173,
         hmr: {
-            host: process.env.VITE_HOST || '192.168.0.105', 
+            host: process.env.VITE_HOST || 'localhost',
+            protocol: 'ws',
         },
+        cors: true,
     },
     resolve: {
         alias: {
